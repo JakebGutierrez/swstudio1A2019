@@ -1,18 +1,49 @@
 import styled from 'styled-components';
-import AppDefaults from '../AppDefaults';
+import Globals from '../Globals';
 
-const textFieldFontSize = AppDefaults.constants.font.sizes.normal;
+const globalColours = Globals.constants.styles.colours;
+const globalFontFamily = Globals.constants.styles.font.family;
+const globalFontSizes = Globals.constants.styles.font.sizes;
+const globalBorderProps = Globals.constants.styles.border;
 
-const TextField = styled.input`
-  border: 1px solid #848484;
-  border-radius: 5px;
+export const TextField = styled.input`
+  background: none;
+  border: ${globalBorderProps.size} solid ${globalColours.grey.contrast};
+  border-radius: ${globalBorderProps.radius};
+  box-sizing: border-box;
+
   padding: 0.8em;
 
   // Prevents custom iOS styling
   -webkit-appearance: none;
 
-  font-family: ${AppDefaults.constants.font.family.default};
-  font-size: ${textFieldFontSize};
+  font-family: ${globalFontFamily.default};
+  font-size: ${globalFontSizes.normal};
+
+  &:focus {
+    outline: none;
+    border: ${globalBorderProps.size} solid ${globalColours.purple.vibrant};
+  }
 `;
 
-export { TextField };
+export const TextArea = styled.textarea`
+  background: none;
+  border: ${globalBorderProps.size} solid ${globalColours.grey.contrast};
+  border-radius: ${globalBorderProps.radius};
+  box-sizing: border-box;
+
+  padding: 0.8em;
+
+  // Prevents custom iOS styling
+  -webkit-appearance: none;
+
+  font-family: ${globalFontFamily.default};
+  font-size: ${globalFontSizes.normal};
+
+  resize: vertical;
+
+  &:focus {
+    outline: none;
+    border: ${globalBorderProps.size} solid ${globalColours.purple.vibrant};
+  }
+`;

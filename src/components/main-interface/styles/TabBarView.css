@@ -1,0 +1,15 @@
+.tab-bar-view-wrapper {
+  height: 100vh;
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-items: stretch;
+  align-content: flex-end;
+}
+
+.tab-bar-content {
+  flex: 1;
+
+  max-height: calc(100vh - 75px);
+}

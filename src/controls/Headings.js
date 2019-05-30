@@ -1,43 +1,74 @@
 import styled from 'styled-components';
-import AppDefaults from '../AppDefaults';
+import Globals from '../Globals';
 
-const Title = styled.h1`
-  font-size: ${AppDefaults.constants.font.sizes.title};
-  font-family: ${AppDefaults.constants.font.family.default};
+const globalColours = Globals.constants.styles.colours;
+const globalFontFamily = Globals.constants.styles.font.family;
+const globalFontSizes = Globals.constants.styles.font.sizes;
+
+export const Title = styled.h1`
+  color: ${globalColours.purple.vibrant};
+
+  font-family: ${globalFontFamily.default};
+  font-size: ${globalFontSizes.title};
+
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+
+  cursor: default;
 `;
 
-const Caption = styled.h1`
-  color: #848484;
+export const Caption = styled.h1`
+  font-family: ${globalFontFamily.default};
+  font-size: ${globalFontSizes.caption};
+  font-weight: 500;
+
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+
+  cursor: default;
+`;
+
+export const Heading = styled.h2`
+  font-family: ${globalFontFamily.default};
+  font-size: ${globalFontSizes.heading};
+  font-weight: 500;
+
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+
+  cursor: default;
+`;
+
+export const Subheading = styled.h2`
+  color: ${globalColours.grey.contrast};
+
+  font-family: ${globalFontFamily.default};
+  font-size: ${globalFontSizes.subheading};
+  font-weight: 400;
 
   margin-top: 0px;
-  margin-bottom: 0px;
 
-  font-family: ${AppDefaults.constants.font.family.default};
-  font-size: ${AppDefaults.constants.font.sizes.caption};
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+
+  cursor: default;
+`;
+
+export const Label = styled.label`
+  color: ${globalColours.grey.contrast};
+
+  font-family: ${globalFontFamily.default};
+  font-size: ${globalFontSizes.normal};
   font-weight: 500;
-`;
-
-const Heading = styled.h2`
-  font-size: ${AppDefaults.constants.font.sizes.heading};
-  font-family: ${AppDefaults.constants.font.family.default};
-`;
-
-const Subheading = styled.h2`
-  color: #848484;
-
-  font-family: ${AppDefaults.constants.font.family.default};
-  font-size: ${AppDefaults.constants.font.sizes.subheading};
-  font-weight: 500;
-`;
-
-const Label = styled.label`
-  color: #848484;
-
-  font-family: ${AppDefaults.constants.font.family.default};
-  font-size: 18px;
   font-variant: small-caps;
-  font-weight: 500;
-  text-align: left;
-`;
 
-export { Title, Caption, Heading, Subheading, Label };
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+
+  cursor: default;
+`;

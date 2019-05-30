@@ -1,0 +1,33 @@
+.account-created-wrapper {
+  height: 100vh;
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.account-created-content {
+  width: 335px;
+  margin-left: 40px;
+  margin-right: 40px;
+}
+
+.account-created-message {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.account-created-button-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.account-created-button-group > *:not(:last-child) {
+  margin-bottom: 20px;
+}
+
+#account-created-subheading {
+  font-size: 16px;
+  text-align: left;
+}

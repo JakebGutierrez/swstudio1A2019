@@ -1,0 +1,23 @@
+.profile-wrapper {
+  height: 100%;
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-items: stretch;
+}
+
+.profile-title-bar {
+  position: fixed;
+  width: 100%;
+  z-index: 10;
+}
+
+.profile-content {
+  flex: 1;
+
+  margin-top: 132px;
+  margin-left: 40px;
+  margin-right: 40px;
+  margin-bottom: 30px;
+}

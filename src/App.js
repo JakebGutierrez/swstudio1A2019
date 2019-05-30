@@ -1,42 +1,67 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
+import { PulseLoader } from 'react-spinners';
 
 import fire from './config/Fire';
 import './App.css';
 
+const wait = ms => new Promise(callback => setTimeout(callback, ms));
+
+const retryOperation = (fn, times, delay) => {
+  return new Promise((resolve, reject) => {
+    return fn()
+      .then(resolve)
+      .catch(reason => {
+        if (times - 1 > 0) {
+          return wait(delay)
+            .then(retryOperation.bind(null, fn, times - 1, delay))
+            .then(resolve)
+            .catch(reject);
+        }
+
+        return reject(reason);
+      });
+  })
+}
+
+const maximumAttempts = 5;
+
+const getCurrentUser = () => new Promise((resolved, rejected) => {
+  let currentUser = fire.auth().currentUser;
+  if (currentUser) {
+    console.log("Found user!");
+    return resolved(currentUser);
+  } else {
+    console.log("Unable to resolve current user. Trying again...");
+    return rejected("Timeout – Failed to get current user on time.");
+  }
+});
+
+export const attemptGetCurrentUser = (attempts=maximumAttempts) => {
+  return retryOperation(getCurrentUser, attempts, 1000);
+}
+
 class App extends Component {
-  constructor() {
-    super();
-
-    this.state = ({
-      user: null,
-    });
-
-    this.authListener = this.authListener.bind(this);
-  }
-
   componentDidMount() {
-    this.authListener();
-  }
-
-  authListener() {
-    fire.auth().onAuthStateChanged((user) => {
-      console.log("Currently signed in user: " + user);
-      if (user) {
-        this.setState({ user });
-        localStorage.setItem('user', user.uid);
+    attemptGetCurrentUser()
+      .then(user => {
+        console.log("Currently signed-in user: " + user.uid);
         this.props.history.push('/home');
-      } else {
-        this.setState({ user: null });
-        localStorage.removeItem('user');
-        this.props.history.push('/login');
-      }
-    });
+      })
+      .catch(error => {
+        console.log(error);
+        this.props.history.push('/start');
+      });
   }
 
   render() {
     return (
-      <div></div>
+      <div className="app-wrapper">
+        <div className="app-content">
+          <img className="app-icon" src="/assets/app_icon.png" alt="Time-Aid"/>
+          <PulseLoader color={'#9492A0'} size={12} margin={'7px'}/>
+        </div>
+      </div>
     );
   }
 }
